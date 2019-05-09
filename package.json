@@ -1,0 +1,17 @@
+{
+  "name": "telegram-feed-monitor-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot that monitors a feed",
+  "main": "index.js",
+  "keywords": [
+    "telegram",
+    "bot"
+  ],
+  "author": "Armando Antón (https://github.com/aanton)",
+  "license": "ISC",
+  "dependencies": {
+    "log-timestamp": "^0.3.0",
+    "node-telegram-bot-api": "^0.30.0",
+    "rss-parser": "^3.7.0"
+  }
+}
