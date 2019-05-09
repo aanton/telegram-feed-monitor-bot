@@ -1,6 +1,8 @@
 # Telegram feed monitor bot
 
-Telegram bot that monitors a feed, detects when the newest post has changed & send it to a Telegram chat.
+Telegram bot that monitors a feed, detects when the newest post has changed & sends it to a Telegram chat.
+
+See a [Telegram bot that monitors a block of a webpage](https://github.com/aanton/telegram-webpage-monitor-bot).
 
 ## Installation
 
