@@ -10,8 +10,8 @@
   "author": "Armando Antón (https://github.com/aanton)",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "log-timestamp": "^0.3.0",
-    "node-telegram-bot-api": "^0.30.0",
     "rss-parser": "^3.7.0"
   }
 }

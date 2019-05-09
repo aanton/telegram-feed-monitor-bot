@@ -1,13 +1,10 @@
 'use strict';
 
-// https://github.com/yagop/node-telegram-bot-api/issues/319
-process.env.NTBA_FIX_319 = 1;
-
 const fs = require('fs');
 const path = require('path');
 require('log-timestamp');
 const Parser = require('rss-parser');
-const TelegramBot = require('node-telegram-bot-api');
+const axios = require("axios");
 const config = require('./config.json');
 
 async function getNewestItem() {
@@ -39,9 +36,14 @@ async function validateNewestItem(item) {
   return item;
 }
 
-function postMessage(item) {
-  let bot = new TelegramBot(config.telegramBotToken);
-  return bot.sendMessage(config.telegramChatId, item.link);
+async function postMessage(item) {
+  const url = 'https://api.telegram.org/bot' + config.telegramBotToken + '/sendMessage';
+  const response = await axios.post(url, {
+    chat_id: config.telegramChatId,
+    text: item.link
+  });
+
+  return response.data;
 }
 
 getNewestItem()
