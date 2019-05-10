@@ -5,7 +5,7 @@ const path = require('path');
 require('log-timestamp');
 const Parser = require('rss-parser');
 const axios = require("axios");
-const config = require('./config.json');
+const config = require('./config.js');
 
 async function getNewestItem() {
   let parser = new Parser();
