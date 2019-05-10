@@ -1,7 +1,7 @@
 const config = {
-  "feed": "",
-  "telegramBotToken": "",
-  "telegramChatId": ""
+  feed: '',
+  telegramBotToken: '',
+  telegramChatId: ''
 }
 
 module.exports = config;

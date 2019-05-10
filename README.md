@@ -22,9 +22,9 @@ See a [Telegram bot that monitors a block of a webpage](https://github.com/aanto
 ```js
 // config.js
 const config = {
-  "feed": "",
-  "telegramBotToken": "",
-  "telegramChatId": ""
+  feed: '',
+  telegramBotToken: '',
+  telegramChatId: ''
 }
 
 module.exports = config;
