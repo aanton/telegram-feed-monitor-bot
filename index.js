@@ -22,7 +22,7 @@ async function getNewestItem() {
 }
 
 async function validateNewestItem(item) {
-  const storage = path.resolve(__dirname + '/storage.json');
+  const storage = path.resolve(__dirname + '/.storage');
   let previousNewestItem = false;
   if (fs.existsSync(storage)) {
     previousNewestItem = JSON.parse(fs.readFileSync(storage, 'utf8'));
