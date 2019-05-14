@@ -1,36 +1,37 @@
 # Telegram feed monitor bot
 
-Telegram bot that monitors a feed, detects when the newest post has changed & sends it to a Telegram chat.
+This project has been deprecated. Use the package [@aanton/telegram-webpage-monitor-bot](https://www.npmjs.com/package/@aanton/telegram-webpage-monitor-bot).
 
-See a [Telegram bot that monitors a block of a webpage](https://github.com/aanton/telegram-webpage-monitor-bot).
-
-## Installation
-
-1. Clone this repository
-2. Install dependencies: `npm install`
-3. Create the configuration file `config.js` copying `config.example.js` and filling it properly (see below)
-
-## Configuration parameters
-
-* `feed`: Feed URL to monitor
-* `telegramBotToken`: Telegram bot token
-  * Create a [Telegram bot](https://core.telegram.org/bots) using [@BotFather](https://telegram.me/botfather)
-* `telegramChatId`: Telegram chat identifier
-  * It can be a private conversation with the bot (you must send previously a message to the bot), a group conversation (the bot must be a member) or a channel conversation (the bot must be an administrator member)
-  * The chat identifier can be obtained using [@ChannelIdBot](https://t.me/ChannelIdBot)
+## Example using @aanton/telegram-webpage-monitor-bot
 
 ```js
-// config.js
-const config = {
-  feed: '',
-  telegramBotToken: '',
-  telegramChatId: ''
-}
+const path = require('path');
+const monitorWebpage = require('@aanton/telegram-webpage-monitor-bot');
+const Parser = require('rss-parser');
 
-module.exports = config;
+const FEED_URL='';
+const TELEGRAM_BOT_TOKEN='';
+const TELEGRAM_CHAT_ID='';
+
+const extractFistItemSnippet = async function(html) {
+  const parser = new Parser();
+  const feed = await parser.parseString(html);
+  if (feed.items.length < 1) {
+    return Promise.reject('ERROR: No items');
+  }
+
+  return feed.items[0].link;
+};
+
+monitorWebpage({
+  name: 'first-link-monitor',
+  url: FEED_URL,
+  storage: path.resolve(__dirname + '/.storage'),
+  telegramBotToken: TELEGRAM_BOT_TOKEN,
+  telegramChatId: TELEGRAM_CHAT_ID,
+  extractSnippet: extractFistItemSnippet
+})
+  .then(JSON.stringify)
+  .then(console.log)
+  .catch(console.log);
 ```
-
-## Usage
-
-* Run `node index.js` manually to verify it is working properly
-* Run it periodically using a crontab or a similar tool
